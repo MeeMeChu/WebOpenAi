@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <!-- Add your bird model here -->
+        <a-entity id="birdModel" gltf-model="Anime_Model.glb" position="0 2 -5" scale="10 10 10"></a-entity>
+        <button onclick="openMouth()">เปิดปาก</button>
+        <button onclick="closeMouth()">ปิดปาก</button>
+
+        <script>
+            function openMouth() {
+                var birdModel = document.querySelector('#birdModel');
+                birdModel.setAttribute('scale', '1 1.5 1'); // ปรับ scale เพื่อเปิดปาก
+            }
+
+            function closeMouth() {
+                var birdModel = document.querySelector('#birdModel');
+                birdModel.setAttribute('scale', '1 1 1'); // ปรับ scale เพื่อปิดปาก
+            }
+        </script>
+
+    </a-scene>
+</body>
+
+</html>

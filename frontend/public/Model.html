@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+
+<script>
+    AFRAME.registerComponent('modify-materials', {
+        init: function () {
+            // Wait for model to load.
+            this.el.addEventListener('model-loaded', () => {
+                // Grab the mesh / scene.
+                const obj = this.el.getObject3D('mesh');
+                // Go over the submeshes and modify materials we want.
+                obj.traverse(node => {
+                    if (node.name.indexOf('ship') !== -1) {
+                        node.material.color.set('red');
+                    }
+                });
+            });
+        }
+    });
+</script>
+
+<body>
+    <a-scene background="color: #ECECEC" vr-mode-ui="enabled: false">
+        <a-camera position="0 1.3 1" look-controls-enabled="false" wasd-controls-enabled="false"></a-camera>
+        <a-assets>
+            <a-asset-item id="cityModel" src="Raito.glb"></a-asset-item>
+        </a-assets>
+        <a-entity gltf-model="#cityModel" modify-materials></a-entity>
+    </a-scene>
+</body>
